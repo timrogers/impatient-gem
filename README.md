@@ -4,6 +4,12 @@ I'm a bit impatient - when I deploy an app to Heroku, I'm the kind of guy who re
 
 But no more with the Impatient gem - basically, this is a really simple (and basically a bit rubbish) app which runs the dreaded command continuously until it stops saying "starting". It'll tell you if it's up. and if the app couldn't start, you'll be told that too and show the logs. Want to try it? Just run `imp`.
 
+## Installation instructions
+
+__You can install this really easily as a gem:__
+
+`gem install impatient`
+
 ## Usage
 
 __Push your app, then run *imp*__. Heroku will deploy your app, and once it's done, Impatient will set their and wait for it to be ready. Once it's ready, it'll say "Heroku app is ready to go."
