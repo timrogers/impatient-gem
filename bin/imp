@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'impatient'
+
+$open_when_ready = false
+
+ARGV.each do |arg|
+  case arg
+  when "-v", "--version"
+    puts "***"
+    puts "Impatient v#{Impatient.version}"
+    puts "***"
+    abort
+  when "-h", "--help"
+    puts "Impatient is the impatient ones among the Heroku userbase. Essentially, it runs 'heroku ps' repeatedly until the status stops indicating that the app is in the process of starting\n\n"
+    puts "If the app's ready to go, it'll tell you. If there are any problems and the app can't start, it'll tell you that too and fetch the logs for you.\n\n"
+    puts "===================="
+    puts "Command line options"
+    puts "====================\n\n"
+    puts "-h or --help - Show this message"
+    puts "-v or --version - Show the current version of Impatient gem"
+    puts "-o or --open - Open the Heroku app once it's ready to go\n\n"
+    puts "--------------------------------------------"
+    puts "by Tim Rogers (https://github.com/timrogers)"
+    puts "--------------------------------------------\n\n"
+    exit
+  when "-o", "--open"
+    puts "I'll open the app once it's ready.\n\n"
+    $open_when_ready = true
+  end
+end
+
+Impatient.execute($open_when_ready)
