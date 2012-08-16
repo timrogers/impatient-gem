@@ -1,5 +1,5 @@
 class Impatient
-  VERSION = "1.0.0"
+  VERSION = "1.1.0"
   
   def self.execute(open_when_ready = false)
     ready = false

@@ -3,6 +3,7 @@
 require 'impatient'
 
 $open_when_ready = false
+$push_master = true
 
 ARGV.each do |arg|
   case arg
@@ -19,15 +20,19 @@ ARGV.each do |arg|
     puts "====================\n\n"
     puts "-h or --help - Show this message"
     puts "-v or --version - Show the current version of Impatient gem"
-    puts "-o or --open - Open the Heroku app once it's ready to go\n\n"
+    puts "-o or --open - Open the Heroku app once it's ready to go"
+    puts "-n or --no-push - Don't automatically push the master branch to Heroku as part of the process\n\n"
     puts "--------------------------------------------"
     puts "by Tim Rogers (https://github.com/timrogers)"
     puts "--------------------------------------------\n\n"
     exit
+  when "-n", "--no-push"
+    $push_master = false
   when "-o", "--open"
     puts "I'll open the app once it's ready.\n\n"
     $open_when_ready = true
   end
 end
 
+`git push heroku master` unless $push_master == false
 Impatient.execute($open_when_ready)
